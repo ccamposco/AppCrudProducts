@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AppCrudProducts"
+             xmlns:vm="clr-namespace:AppCrudProducts.ViewModels"
+             x:Class="AppCrudProducts.Views.MainPage">
+    <ContentPage.BindingContext>
+        <vm:ProductVM/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
+            <Label Text="REGISTER PRODUCTS MVVM APP CRUD"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="FirstName" Placeholder=" Enter Name Product"
+                   Text="{Binding NameProp, Mode=TwoWay}"/>
+            <Entry x:Name="LastName" Placeholder=" Enter Price"
+                   Text="{Binding PriceProp, Mode=TwoWay}"/>
+            <Entry x:Name="Email" Placeholder=" Enter Quantity"
+                   Text="{Binding QuantityProp, Mode=TwoWay}"/>
+
+            <StackLayout>
+                <Button x:Name="SaveButton" Text="Register Product" 
+                        Command="{Binding SaveCommand}"/>
+                <Button x:Name="ShowButton" Text="Show Product"
+                        Command="{Binding ShowCommand}"/>
+            </StackLayout>
+
+
+            <StackLayout>
+                <ListView x:Name="lstProduct" ItemsSource="{Binding Product}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
